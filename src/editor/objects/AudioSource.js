@@ -3,7 +3,8 @@ import { RethrownError } from "../utils/errors";
 
 export const AudioType = {
   Stereo: "stereo",
-  PannerNode: "pannernode"
+  PannerNode: "pannernode",
+  Ambisonics: "ambisonics"
 };
 
 export const DistanceModelType = {
