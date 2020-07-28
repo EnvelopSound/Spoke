@@ -73,7 +73,7 @@ export default class AudioSource extends Object3D {
     let audio;
     const oldAudio = this.audio;
 
-    if (type === AudioType.PannerNode) {
+    if (type === AudioType.PannerNode || type === AudioType.Ambisonics) {
       audio = new PositionalAudio(this.audioListener);
     } else {
       audio = new Audio(this.audioListener);
@@ -93,6 +93,11 @@ export default class AudioSource extends Object3D {
       audio.setNodeSource(this.audioSource);
     }
 
+    if (type == AudioType.Ambisonics) {
+      audio.setupUrl = "testUrl";
+      console.log("set setup url to " + audio.setupUrl);
+    }
+
     this.audio = audio;
     this.add(audio);
     this._audioType = type;
@@ -107,49 +112,46 @@ export default class AudioSource extends Object3D {
   }
 
   get distanceModel() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.getDistanceModel();
     }
-
     return null;
   }
 
   set distanceModel(value) {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       this.audio.setDistanceModel(value);
     }
   }
 
   get rolloffFactor() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.getRolloffFactor();
     }
-
     return null;
   }
 
   set rolloffFactor(value) {
-    if (this.audioType === AudioType.PannerNode) {
-      return this.audio.setRolloffFactor(value);
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
+      this.audio.setRolloffFactor(value);
     }
   }
 
   get refDistance() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.getRefDistance();
     }
-
     return null;
   }
 
   set refDistance(value) {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       this.audio.setRefDistance(value);
     }
   }
 
   get maxDistance() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.getMaxDistance();
     }
 
@@ -157,13 +159,13 @@ export default class AudioSource extends Object3D {
   }
 
   set maxDistance(value) {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       this.audio.setMaxDistance(value);
     }
   }
 
   get coneInnerAngle() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.panner.coneInnerAngle;
     }
 
@@ -171,13 +173,13 @@ export default class AudioSource extends Object3D {
   }
 
   set coneInnerAngle(value) {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       this.audio.panner.coneInnerAngle = value;
     }
   }
 
   get coneOuterAngle() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.panner.coneOuterAngle;
     }
 
@@ -185,13 +187,13 @@ export default class AudioSource extends Object3D {
   }
 
   set coneOuterAngle(value) {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       this.audio.panner.coneOuterAngle = value;
     }
   }
 
   get coneOuterGain() {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       return this.audio.panner.coneOuterGain;
     }
 
@@ -199,7 +201,7 @@ export default class AudioSource extends Object3D {
   }
 
   set coneOuterGain(value) {
-    if (this.audioType === AudioType.PannerNode) {
+    if (this.audioType === AudioType.PannerNode || this.audioType === AudioType.Ambisonics) {
       this.audio.panner.coneOuterGain = value;
     }
   }
