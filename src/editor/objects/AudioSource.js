@@ -33,6 +33,7 @@ export default class AudioSource extends Object3D {
     this.controls = true;
     this.audioType = AudioType.PannerNode;
     this.volume = 0.5;
+    this.loudspeakerSetupUrl = "defaultUrlAudioSource";
   }
 
   get duration() {
@@ -73,6 +74,7 @@ export default class AudioSource extends Object3D {
     let audio;
     const oldAudio = this.audio;
 
+    // Also Ambisonics Audio Type creates a PositionalAudio Node, to be replicated
     if (type === AudioType.PannerNode || type === AudioType.Ambisonics) {
       audio = new PositionalAudio(this.audioListener);
     } else {
@@ -91,11 +93,6 @@ export default class AudioSource extends Object3D {
 
     if (this.audioSource) {
       audio.setNodeSource(this.audioSource);
-    }
-
-    if (type == AudioType.Ambisonics) {
-      audio.setupUrl = "testUrl";
-      console.log("set setup url to " + audio.setupUrl);
     }
 
     this.audio = audio;
@@ -264,6 +261,7 @@ export default class AudioSource extends Object3D {
     this.coneOuterAngle = source.coneOuterAngle;
     this.coneOuterGain = source.coneOuterGain;
     this.src = source.src;
+    this.loudspeakerSetupUrl = source.loudspeakerSetupUrl;
 
     return this;
   }

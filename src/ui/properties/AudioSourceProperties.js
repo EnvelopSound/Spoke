@@ -4,6 +4,7 @@ import InputGroup from "../inputs/InputGroup";
 import BooleanInput from "../inputs/BooleanInput";
 import SelectInput from "../inputs/SelectInput";
 import NumericInputGroup from "../inputs/NumericInputGroup";
+import StringInput from "../inputs/StringInput";
 import CompoundNumericInput from "../inputs/CompoundNumericInput";
 import { AudioType, AudioTypeOptions, DistanceModelOptions, DistanceModelType } from "../../editor/objects/AudioSource";
 import useSetPropertySelected from "./useSetPropertySelected";
@@ -21,6 +22,7 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
   const onChangeConeInnerAngle = useSetPropertySelected(editor, "coneInnerAngle");
   const onChangeConeOuterAngle = useSetPropertySelected(editor, "coneOuterAngle");
   const onChangeConeOuterGain = useSetPropertySelected(editor, "coneOuterGain");
+  const onChangeloudspeakerSetupUrl = useSetPropertySelected(editor, "loudspeakerSetupUrl");
 
   // TODO: Make node audio settings work with multi-edit
 
@@ -74,6 +76,7 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
               onChange={onChangeRolloffFactor}
             />
           )}
+
           <NumericInputGroup
             name="Ref Distance"
             info="A double value representing the reference distance for reducing volume as the audio source moves further from the listener."
@@ -138,11 +141,18 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
       )}
       {!multiEdit && node.audioType === AudioType.Ambisonics && (
         <>
-          <InputGroup name="Loudspeaker Setup URL" info="Link to the loudspeaker config."></InputGroup>
+          <InputGroup name="Loudspeaker Setup URL" info="Link to the loudspeaker config.">
+            <StringInput
+              id="loudspeakerSetuptUrl"
+              title="Link to the loudspeaker config"
+              value={node.loudspeakerSetupUrl}
+              onChange={onChangeloudspeakerSetupUrl}
+            />
+          </InputGroup>
 
           <InputGroup
             name="Distance Model"
-            info="The algorithim used to calculate audio rolloff for all speakers in the Ambisonics system."
+            info="The algorithm used to calculate audio rolloff for all speakers in the Ambisonics system."
           >
             <SelectInput options={DistanceModelOptions} value={node.distanceModel} onChange={onChangeDistanceModel} />
           </InputGroup>
