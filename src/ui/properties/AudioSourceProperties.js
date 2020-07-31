@@ -23,6 +23,10 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
   const onChangeConeOuterAngle = useSetPropertySelected(editor, "coneOuterAngle");
   const onChangeConeOuterGain = useSetPropertySelected(editor, "coneOuterGain");
   const onChangeloudspeakerSetupUrl = useSetPropertySelected(editor, "loudspeakerSetupUrl");
+  const onChangeloudspeakerVisible = useSetPropertySelected(editor, "loudspeakerVisible");
+  const onChangeloudspeakerArrayOffset = useSetPropertySelected(editor, "loudspeakerArrayOffset");
+  const onChangeRoomSimulationLevel = useSetPropertySelected(editor, "roomSimulationLevel");
+  const onChangeDecodingOrder = useSetPropertySelected(editor, "decodingOrder");
 
   // TODO: Make node audio settings work with multi-edit
 
@@ -151,39 +155,34 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
           </InputGroup>
 
           <InputGroup
-            name="Distance Model"
-            info="The algorithm used to calculate audio rolloff for all speakers in the Ambisonics system."
+            name="Loudspeaker Visible"
+            info="Toggles visibility of the Ambisonics Loudspeaker Array. (no preview)"
           >
-            <SelectInput options={DistanceModelOptions} value={node.distanceModel} onChange={onChangeDistanceModel} />
+            <BooleanInput value={node.loudspeakerVisible} onChange={onChangeloudspeakerVisible} />
           </InputGroup>
 
-          {node.distanceModel === DistanceModelType.linear ? (
-            <InputGroup
-              name="Rolloff Factor"
-              info="A double value describing how quickly the volume is reduced as the listener moves away from a speaker in the Ambisonics system. 0 to 1"
-            >
-              <CompoundNumericInput
-                min={0}
-                max={1}
-                smallStep={0.001}
-                mediumStep={0.01}
-                largeStep={0.1}
-                value={node.rolloffFactor}
-                onChange={onChangeRolloffFactor}
-              />
-            </InputGroup>
-          ) : (
-            <NumericInputGroup
-              name="Rolloff Factor"
-              info="A double value describing how quickly the volume is reduced as the listener moves away from a speaker in the Ambisonics system. 0 to Infinity"
-              min={0}
-              smallStep={0.1}
-              mediumStep={1}
-              largeStep={10}
-              value={node.rolloffFactor}
-              onChange={onChangeRolloffFactor}
-            />
-          )}
+          <NumericInputGroup
+            name="Array Offset"
+            info="Moves the center of the Loudspeaker Array"
+            min={0}
+            max={100}
+            smallStep={0.1}
+            mediumStep={1}
+            largeStep={10}
+            value={node.loudspeakerArrayOffset}
+            onChange={onChangeloudspeakerArrayOffset}
+            unit="m"
+          />
+          <NumericInputGroup
+            name="Rolloff Factor"
+            info="A double value describing how quickly the volume is reduced as the listener moves away from a speaker in the Ambisonics system. 0 to Infinity"
+            min={0}
+            smallStep={0.1}
+            mediumStep={1}
+            largeStep={10}
+            value={node.rolloffFactor}
+            onChange={onChangeRolloffFactor}
+          />
           <NumericInputGroup
             name="Ref Distance"
             info="A double value representing the reference distance for reducing volume as the listener moves away from a speaker in the Ambisonics system."
@@ -195,55 +194,20 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
             onChange={onChangeRefDistance}
             unit="m"
           />
-          <NumericInputGroup
-            name="Max Distance"
-            info="A double value representing the maximum distance between the speaker in the Ambisonics system and the listener, after which the volume is not reduced any further."
-            min={0.00001}
-            smallStep={0.1}
-            mediumStep={1}
-            largeStep={10}
-            value={node.maxDistance}
-            onChange={onChangeMaxDistance}
-            unit="m"
-          />
-          <NumericInputGroup
-            name="Cone Inner Angle"
-            info="A double value describing the angle, in degrees, of a cone inside of which there will be no volume reduction."
-            min={0}
-            max={360}
-            smallStep={0.1}
-            mediumStep={1}
-            largeStep={10}
-            value={node.coneInnerAngle}
-            onChange={onChangeConeInnerAngle}
-            unit="°"
-            disabled={multiEdit}
-          />
-          <NumericInputGroup
-            name="Cone Outer Angle"
-            info="A double value describing the angle, in degrees, of a cone outside of which the volume will be reduced by a constant value, defined by the coneOuterGain attribute."
-            min={0}
-            max={360}
-            smallStep={0.1}
-            mediumStep={1}
-            largeStep={10}
-            value={node.coneOuterAngle}
-            onChange={onChangeConeOuterAngle}
-            unit="°"
-            disabled={multiEdit}
-          />
-          <InputGroup
-            name="Cone Outer Gain"
-            info="A double value describing the amount of volume reduction outside the cone defined by the coneOuterAngle attribute. Its default value is 0, meaning that no sound can be heard."
-          >
-            <CompoundNumericInput
-              min={0}
-              max={1}
-              step={0.01}
-              value={node.coneOuterGain}
-              onChange={onChangeConeOuterGain}
-            />
+          <InputGroup name="Room Simulation Level">
+            <CompoundNumericInput value={node.roomSimulationLevel} onChange={onChangeRoomSimulationLevel} />
           </InputGroup>
+          <NumericInputGroup
+            name="Decoding Order"
+            info="Binaural Decoding Order of the Simulated Environment (independent of the stream order)"
+            min={1}
+            max={4}
+            smallStep={1}
+            mediumStep={1}
+            largeStep={1}
+            value={node.decodingOrder}
+            onChange={onChangeDecodingOrder}
+          />
         </>
       )}
     </>

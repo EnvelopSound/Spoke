@@ -33,7 +33,6 @@ export default class AudioSource extends Object3D {
     this.controls = true;
     this.audioType = AudioType.PannerNode;
     this.volume = 0.5;
-    this.loudspeakerSetupUrl = "defaultUrlAudioSource";
   }
 
   get duration() {
@@ -262,6 +261,9 @@ export default class AudioSource extends Object3D {
     this.coneOuterGain = source.coneOuterGain;
     this.src = source.src;
     this.loudspeakerSetupUrl = source.loudspeakerSetupUrl;
+    this.loudspeakerArrayOffset = source.loudspeakerArrayOffset;
+    this.roomSimulationLevel = source.roomSimulationLevel;
+    this.decodingOrder = source.decodingOrder;
 
     return this;
   }

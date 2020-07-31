@@ -33,7 +33,11 @@ export default class VideoNode extends EditorNodeMixin(Video) {
       coneOuterAngle,
       coneOuterGain,
       projection,
-      loudspeakerSetupUrl
+      loudspeakerSetupUrl,
+      loudspeakerVisible,
+      loudspeakerArrayOffset,
+      roomSimulationLevel,
+      decodingOrder
     } = json.components.find(c => c.name === "video").props;
 
     loadAsync(
@@ -53,6 +57,10 @@ export default class VideoNode extends EditorNodeMixin(Video) {
         node.coneOuterGain = coneOuterGain;
         node.projection = projection;
         node.loudspeakerSetupUrl = loudspeakerSetupUrl;
+        node.loudspeakerVisible = loudspeakerVisible;
+        node.loudspeakerArrayOffset = loudspeakerArrayOffset;
+        node.roomSimulationLevel = roomSimulationLevel;
+        node.decodingOrder = decodingOrder;
       })()
     );
 
@@ -195,7 +203,11 @@ export default class VideoNode extends EditorNodeMixin(Video) {
         coneOuterAngle: this.coneOuterAngle,
         coneOuterGain: this.coneOuterGain,
         projection: this.projection,
-        loudspeakerSetupUrl: this.loudspeakerSetupUrl
+        loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+        loudspeakerVisible: this.loudspeakerVisible,
+        loudspeakerArrayOffset: this.loudspeakerArrayOffset,
+        roomSimulationLevel: this.roomSimulationLevel,
+        decodingOrder: this.decodingOrder
       }
     });
   }
@@ -217,7 +229,11 @@ export default class VideoNode extends EditorNodeMixin(Video) {
       coneOuterAngle: this.coneOuterAngle,
       coneOuterGain: this.coneOuterGain,
       projection: this.projection,
-      loudspeakerSetupUrl: this.loudspeakerSetupUrl
+      loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+      loudspeakerVisible: this.loudspeakerVisible,
+      loudspeakerArrayOffset: this.loudspeakerArrayOffset,
+      roomSimulationLevel: this.roomSimulationLevel,
+      decodingOrder: this.decodingOrder
     });
     this.addGLTFComponent("networked", {
       id: this.uuid

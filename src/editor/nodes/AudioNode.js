@@ -32,7 +32,12 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
       maxDistance,
       coneInnerAngle,
       coneOuterAngle,
-      coneOuterGain
+      coneOuterGain,
+      loudspeakerSetupUrl,
+      loudspeakerVisible,
+      loudspeakerArrayOffset,
+      roomSimulationLevel,
+      decodingOrder
     } = json.components.find(c => c.name === "audio").props;
 
     loadAsync(
@@ -50,6 +55,11 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
         node.coneInnerAngle = coneInnerAngle;
         node.coneOuterAngle = coneOuterAngle;
         node.coneOuterGain = coneOuterGain;
+        node.loudspeakerSetupUrl = loudspeakerSetupUrl;
+        node.loudspeakerVisible = loudspeakerVisible;
+        node.loudspeakerArrayOffset = loudspeakerArrayOffset;
+        node.roomSimulationLevel = roomSimulationLevel;
+        node.decodingOrder = decodingOrder;
       })()
     );
 
@@ -187,7 +197,12 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
         maxDistance: this.maxDistance,
         coneInnerAngle: this.coneInnerAngle,
         coneOuterAngle: this.coneOuterAngle,
-        coneOuterGain: this.coneOuterGain
+        coneOuterGain: this.coneOuterGain,
+        loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+        loudspeakerVisible: this.loudspeakerVisible,
+        loudspeakerArrayOffset: this.loudspeakerArrayOffset,
+        roomSimulationLevel: this.roomSimulationLevel,
+        decodingOrder: this.decodingOrder
       }
     });
   }
@@ -208,7 +223,12 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
       maxDistance: this.maxDistance,
       coneInnerAngle: this.coneInnerAngle,
       coneOuterAngle: this.coneOuterAngle,
-      coneOuterGain: this.coneOuterGain
+      coneOuterGain: this.coneOuterGain,
+      loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+      loudspeakerVisible: this.loudspeakerVisible,
+      loudspeakerArrayOffset: this.loudspeakerArrayOffset,
+      roomSimulationLevel: this.roomSimulationLevel,
+      decodingOrder: this.decodingOrder
     });
     this.addGLTFComponent("networked", {
       id: this.uuid

@@ -20,6 +20,5 @@ export function matchesFileTypes(file, fileTypes) {
       return true;
     }
   }
-
   return false;
 }
