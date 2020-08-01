@@ -16,7 +16,8 @@ export const DistanceModelType = {
 export const LoudspeakerSetups = {
   GrazArray: "grazArray",
   GrazArrayXL: "grazArrayXL",
-  EnvelopeSF: "envelopeSF",
+  EnvelopSF: "envelopSF",
+  EnvelopSFXL: "envelopSFXL",
   Ico: "ico"
 };
 
@@ -40,8 +41,14 @@ export default class AudioSource extends Object3D {
     this._src = "";
     this.audioListener = audioListener;
     this.controls = true;
-    this.audioType = AudioType.PannerNode;
+    this.audioType = AudioType.Ambisonics;
     this.volume = 0.5;
+
+    this.decodingOrder = 4;
+    this.loudspeakerVisible = true;
+    this.roomSimulationLevel = 0.5;
+
+    this.loudspeakerSetup = LoudspeakerSetups.GrazArrayXL;
   }
 
   get duration() {
