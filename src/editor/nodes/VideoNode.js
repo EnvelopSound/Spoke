@@ -33,7 +33,7 @@ export default class VideoNode extends EditorNodeMixin(Video) {
       coneOuterAngle,
       coneOuterGain,
       projection,
-      loudspeakerSetupUrl,
+      loudspeakerSetup,
       loudspeakerVisible,
       loudspeakerArrayOffset,
       roomSimulationLevel,
@@ -56,7 +56,7 @@ export default class VideoNode extends EditorNodeMixin(Video) {
         node.coneOuterAngle = coneOuterAngle;
         node.coneOuterGain = coneOuterGain;
         node.projection = projection;
-        node.loudspeakerSetupUrl = loudspeakerSetupUrl;
+        node.loudspeakerSetup = loudspeakerSetup;
         node.loudspeakerVisible = loudspeakerVisible;
         node.loudspeakerArrayOffset = loudspeakerArrayOffset;
         node.roomSimulationLevel = roomSimulationLevel;
@@ -203,7 +203,7 @@ export default class VideoNode extends EditorNodeMixin(Video) {
         coneOuterAngle: this.coneOuterAngle,
         coneOuterGain: this.coneOuterGain,
         projection: this.projection,
-        loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+        loudspeakerSetup: this.loudspeakerSetup,
         loudspeakerVisible: this.loudspeakerVisible,
         loudspeakerArrayOffset: this.loudspeakerArrayOffset,
         roomSimulationLevel: this.roomSimulationLevel,
@@ -229,7 +229,7 @@ export default class VideoNode extends EditorNodeMixin(Video) {
       coneOuterAngle: this.coneOuterAngle,
       coneOuterGain: this.coneOuterGain,
       projection: this.projection,
-      loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+      loudspeakerSetup: this.loudspeakerSetup,
       loudspeakerVisible: this.loudspeakerVisible,
       loudspeakerArrayOffset: this.loudspeakerArrayOffset,
       roomSimulationLevel: this.roomSimulationLevel,

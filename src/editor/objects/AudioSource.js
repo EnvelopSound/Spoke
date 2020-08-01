@@ -13,9 +13,18 @@ export const DistanceModelType = {
   Exponential: "exponential"
 };
 
+export const LoudspeakerSetups = {
+  GrazArray: "grazArray",
+  GrazArrayXL: "grazArrayXL",
+  EnvelopeSF: "envelopeSF",
+  Ico: "ico"
+};
+
 export const AudioTypeOptions = Object.values(AudioType).map(v => ({ label: v, value: v }));
 
 export const DistanceModelOptions = Object.values(DistanceModelType).map(v => ({ label: v, value: v }));
+
+export const LoudspeakerSetupOptions = Object.values(LoudspeakerSetups).map(v => ({ label: v, value: v }));
 
 export default class AudioSource extends Object3D {
   constructor(audioListener, elTag = "audio") {
@@ -260,7 +269,7 @@ export default class AudioSource extends Object3D {
     this.coneOuterAngle = source.coneOuterAngle;
     this.coneOuterGain = source.coneOuterGain;
     this.src = source.src;
-    this.loudspeakerSetupUrl = source.loudspeakerSetupUrl;
+    this.loudspeakerSetup = source.loudspeakerSetup;
     this.loudspeakerArrayOffset = source.loudspeakerArrayOffset;
     this.roomSimulationLevel = source.roomSimulationLevel;
     this.decodingOrder = source.decodingOrder;

@@ -4,9 +4,14 @@ import InputGroup from "../inputs/InputGroup";
 import BooleanInput from "../inputs/BooleanInput";
 import SelectInput from "../inputs/SelectInput";
 import NumericInputGroup from "../inputs/NumericInputGroup";
-import StringInput from "../inputs/StringInput";
 import CompoundNumericInput from "../inputs/CompoundNumericInput";
-import { AudioType, AudioTypeOptions, DistanceModelOptions, DistanceModelType } from "../../editor/objects/AudioSource";
+import {
+  AudioType,
+  AudioTypeOptions,
+  DistanceModelOptions,
+  DistanceModelType,
+  LoudspeakerSetupOptions
+} from "../../editor/objects/AudioSource";
 import useSetPropertySelected from "./useSetPropertySelected";
 
 export default function AudioSourceProperties({ node, editor, multiEdit }) {
@@ -22,7 +27,7 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
   const onChangeConeInnerAngle = useSetPropertySelected(editor, "coneInnerAngle");
   const onChangeConeOuterAngle = useSetPropertySelected(editor, "coneOuterAngle");
   const onChangeConeOuterGain = useSetPropertySelected(editor, "coneOuterGain");
-  const onChangeloudspeakerSetupUrl = useSetPropertySelected(editor, "loudspeakerSetupUrl");
+  const onChangeloudspeakerSetup = useSetPropertySelected(editor, "loudspeakerSetup");
   const onChangeloudspeakerVisible = useSetPropertySelected(editor, "loudspeakerVisible");
   const onChangeloudspeakerArrayOffset = useSetPropertySelected(editor, "loudspeakerArrayOffset");
   const onChangeRoomSimulationLevel = useSetPropertySelected(editor, "roomSimulationLevel");
@@ -145,12 +150,11 @@ export default function AudioSourceProperties({ node, editor, multiEdit }) {
       )}
       {!multiEdit && node.audioType === AudioType.Ambisonics && (
         <>
-          <InputGroup name="Loudspeaker Setup URL" info="Link to the loudspeaker config.">
-            <StringInput
-              id="loudspeakerSetuptUrl"
-              title="Link to the loudspeaker config"
-              value={node.loudspeakerSetupUrl}
-              onChange={onChangeloudspeakerSetupUrl}
+          <InputGroup name="LoudspeakerSetup">
+            <SelectInput
+              options={LoudspeakerSetupOptions}
+              value={node.loudspeakerSetup}
+              onChange={onChangeloudspeakerSetup}
             />
           </InputGroup>
 

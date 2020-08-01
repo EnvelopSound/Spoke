@@ -33,7 +33,7 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
       coneInnerAngle,
       coneOuterAngle,
       coneOuterGain,
-      loudspeakerSetupUrl,
+      loudspeakerSetup,
       loudspeakerVisible,
       loudspeakerArrayOffset,
       roomSimulationLevel,
@@ -55,7 +55,7 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
         node.coneInnerAngle = coneInnerAngle;
         node.coneOuterAngle = coneOuterAngle;
         node.coneOuterGain = coneOuterGain;
-        node.loudspeakerSetupUrl = loudspeakerSetupUrl;
+        node.loudspeakerSetup = loudspeakerSetup;
         node.loudspeakerVisible = loudspeakerVisible;
         node.loudspeakerArrayOffset = loudspeakerArrayOffset;
         node.roomSimulationLevel = roomSimulationLevel;
@@ -198,7 +198,7 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
         coneInnerAngle: this.coneInnerAngle,
         coneOuterAngle: this.coneOuterAngle,
         coneOuterGain: this.coneOuterGain,
-        loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+        loudspeakerSetup: this.loudspeakerSetup,
         loudspeakerVisible: this.loudspeakerVisible,
         loudspeakerArrayOffset: this.loudspeakerArrayOffset,
         roomSimulationLevel: this.roomSimulationLevel,
@@ -224,7 +224,7 @@ export default class AudioNode extends EditorNodeMixin(AudioSource) {
       coneInnerAngle: this.coneInnerAngle,
       coneOuterAngle: this.coneOuterAngle,
       coneOuterGain: this.coneOuterGain,
-      loudspeakerSetupUrl: this.loudspeakerSetupUrl,
+      loudspeakerSetup: this.loudspeakerSetup,
       loudspeakerVisible: this.loudspeakerVisible,
       loudspeakerArrayOffset: this.loudspeakerArrayOffset,
       roomSimulationLevel: this.roomSimulationLevel,
