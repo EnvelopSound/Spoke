@@ -270,6 +270,7 @@ export default class AudioSource extends Object3D {
     this.coneOuterGain = source.coneOuterGain;
     this.src = source.src;
     this.loudspeakerSetup = source.loudspeakerSetup;
+    this.loudspeakerVisible = source.loudspeakerVisible;
     this.loudspeakerArrayOffset = source.loudspeakerArrayOffset;
     this.roomSimulationLevel = source.roomSimulationLevel;
     this.decodingOrder = source.decodingOrder;
